@@ -1,0 +1,73 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Registration-Form</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="{% static 'signup/fonts/linearicons/style.css'%}">
+
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'signup/css/style.css'%}">
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<img src="{% static 'signup-static/images/image-1.png'%}" alt="" class="image-1">
+				{% if messages %}
+				    <ul class="messages">
+ 			       {% for message in messages %}
+				<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+   			     {% endfor %}
+   				 </ul>
+				{% endif %}
+				<form action="/signup" method="post">
+                    {% csrf_token %}
+					<h3>New Account?</h3>
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="text" class="form-control" id = "username"  name ="username"placeholder="Username" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="text" class="form-control" id = "fullname" name ="fullname" placeholder="Enter your name" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input type="email" class="form-control" id ="email" name ="email" placeholder="Enter your Mail"required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="text" class="form-control" id = "address" name ="address" placeholder="Enter your address" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" id = "password" name ="password" placeholder="Create your password" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" id ="cnf_password" name = "cnf_password" placeholder="please Confirm Password" required>
+					</div>
+					<button type="submit">
+						<span>Register</span>
+					</button>
+				</form>
+				<form action="/hello">
+				<button type="submit">
+					<span>Registeeer</span>
+				</button>
+			</form>
+				<img src="{% static 'signup/images/image-2.png'%}" alt="" class="image-2">
+			</div>
+			
+		</div>
+		
+		<script src="{% static 'signup/js/jquery-3.3.1.min.js'% } "></script>
+		<script src="{% static 'signup/js/main.js'%} "></script>
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

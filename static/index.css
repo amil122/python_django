@@ -1,0 +1,60 @@
+/* Apply styles to the buttons */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Add a hover effect for the buttons */
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
+/* Add a ripple effect for the buttons on click */
+.btn a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn:hover a::after {
+    content: '';
+    position: absolute;
+    background: #007bff;
+    border-radius: 50%;
+    width: 100%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.3s linear;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Home</title>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <h1 class="text-center mb-4">Welcome to the home page</h1>
+
+    {% if user.is_authenticated %}
+        <h2 class="text-center mb-3">Hello Mr.{{ uname }}</h2>
+        <h3 class="text-center mb-4">You're successfully logged in</h3>
+        <button type="button" class="btn btn-primary btn-block" id="signOutBtn">Sign-out</button>
+    {% else %}
+        <div class="btn-group d-flex" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary flex-fill" id="signInBtn">Sign-in</button>
+            <button type="button" class="btn btn-primary flex-fill" id="signUpBtn">Sign-up</button>
+        </div>
+    {% endif %}
+
+    <div class="modal" tabindex="-1" role="dialog" id="signOutModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Sign-out</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to sign out?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmSignOut">Sign-out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add interactivity using JavaScript/jQuery
+
+    // Sign-out button click event
+    $('#signOutBtn').on('click', function() {
+        $('#signOutModal').modal('show');
+    });
+
+    // Confirm Sign-out button click event
+    $('#confirmSignOut').on('click', function() {
+        // You can add an AJAX call here to handle the sign-out process
+        window.location.href = "/signout"; // Redirect to the sign-out page
+    });
+
+    // Sign-in button click event
+    $('#signInBtn').on('click', function() {
+        window.location.href = "/signin"; // Redirect to the sign-in page
+    });
+
+    // Sign-up button click event
+    $('#signUpBtn').on('click', function() {
+        window.location.href = "/signup"; // Redirect to the sign-up page
+    });
+</script>
+
+</body>
+</html>
